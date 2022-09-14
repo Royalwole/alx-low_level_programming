@@ -1,25 +1,29 @@
-#include"main.h"
+#include <stdio.h>
 
 /**
- * main - Entry point
+ * main - natural numbers multiples of 3 or 5 to 1024
  *
- * Description: computes the sum of all
- *		the multiples of 3 or 5
- *		below 1024 (excluded)
- *
- * Return: Always 0 (Success)
-*/
+ * Return: always 0
+ */
 
 int main(void)
 {
-	int sum, num;
+	int s, t, f, tm, fm;
 
-	for (num = 0; num < 1024; ++num)
+	s = 0;
+	for (t = 0; t <= (1024 / 3); t++)
 	{
-		if ((num % 3 == 0) || (num % 5 == 0))
-			sum += num;
+		tm = 3 * t;
+		s = s + tm;
 	}
-	printf("%d\n", sum);
-
+	for (f = 0; f <= (1024 / 5); f++)
+	{
+		if (!(f % 3 == 0))
+		{
+			fm = 5 * f;
+			s = s + fm;
+		}
+	}
+	printf("%i\n", s);
 	return (0);
 }
