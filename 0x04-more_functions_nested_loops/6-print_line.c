@@ -1,18 +1,18 @@
 #include "main.h"
 
 /**
-*print_line - output line
-*
-*
-*/
-void print_line(int l)
+ * print_line - output a line
+ *
+ * @n: length of line to output
+ *
+ * Return: void
+ */
+void print_line(int n)
 {
-	int line;
-
-	if (l > 0)
+	while (n > 0)
 	{
-		for (line = 0; line < l; line++)
-			_putchar('_');
+		_putchar('_');
+		n--;
 	}
 	_putchar('\n');
 }
