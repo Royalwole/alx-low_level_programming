@@ -2,31 +2,29 @@
 #include <stdio.h>
 
 /**
- * 
+ * main start
  *
- *Always return 0.
+ *out put the figures 1 - 100 w/
+ * Fizz for multiples of 3 and Buzz for multiples of 5,
+ * while FizzBuzz for multiples of both
+ *
+ * Always return 0
  */
 int main(void)
 {
-	int a;
+	int i;
 
-	for (a = 1; a <= 100; a++)
+	for (i = 1; i <= 100; i++)
 	{
-		if (a % 3 == 0 && a % 5 == 0)
-		{
+		if (i % 15 == 0)
 			printf("FizzBuzz");
-		}
-		else if (a % 3 == 0)
-		{
+		else if (i % 3 == 0)
 			printf("Fizz");
-		}
-		else if (a % 5 == 0)
-		{
+		else if (i % 5 == 0)
 			printf("Buzz");
-		}
 		else
-			printf("%d", a);
-		if (a != 100)
+			printf("%i", i);
+		if (i < 100)
 			printf(" ");
 	}
 	printf("\n");
