@@ -1,86 +1,82 @@
-#include <stdarg.h>
-#include <stdio.h>
 #include "variadic_functions.h"
-
+#include<stdio.h>
+#include<stdarg.h>
 /**
- * print_c - print a char
- * @c: char to print
- *
+ * p_char - print char
+ * @list:arg
  * Return: void
  */
-void print_c(va_list c)
+
+void p_char(va_list list)
 {
-	printf("%c", va_arg(c, int));
+	printf("%c", va_arg(list, int));
 }
-
 /**
- * print_s - prints a string
- * @s: string to print
- *
+ * p_string - print string
+ * @list:arg
  * Return: void
  */
-void print_s(va_list s)
-{
-	char *str = va_arg(s, char *);
 
+void p_string(va_list list)
+{
+	char *str;
+
+	str = va_arg(list, char*);
 	if (str == NULL)
 		str = "(nil)";
-	printf("%s", str);
+printf("%s", str);
 }
-
 /**
- * print_i - prints an int
- * @i: int to print
- *
+ * p_integer - print integer
+ * @list:arg
  * Return: void
  */
-void print_i(va_list i)
-{
-	printf("%d", va_arg(i, int));
-}
 
+void p_integer(va_list list)
+{
+	printf("%i", va_arg(list, int));
+}
 /**
- * print_f - prints a float
- * @f: float to print
- *
+ * p_float - print float
+ * @list:arg
  * Return: void
  */
-void print_f(va_list f)
-{
-	printf("%f", va_arg(f, double));
-}
 
+void p_float(va_list list)
+{
+	printf("%f", va_arg(list, double));
+}
 /**
- * print_all - prints anything
- * @format: list of argument types passed to the function
- *
+ * print_all - print everything
+ * @format:arg
  * Return: void
  */
 void print_all(const char * const format, ...)
+
 {
 	unsigned int i, j;
-	print_t p[] = {
-		{"c", print_c},
-		{"s", print_s},
-		{"i", print_i},
-		{"f", print_f},
+	t_print t[] = {
+		{"c", p_char},
+		{"s", p_string},
+		{"i", p_integer},
+		{"f", p_float},
 		{NULL, NULL}
 	};
 	va_list valist;
-	char *separator = "";
+	char *s = "";
 
 	va_start(valist, format);
 	i = 0;
 	while (format && format[i])
 	{
 		j = 0;
-		while (p[j].t != NULL)
+		while (t[j].x != NULL)
 		{
-			if (*(p[j].t) == format[i])
+			if (*(t[j].x) == format[i])
 			{
-				printf("%s", separator);
-				p[j].f(valist);
-				separator = ", ";
+				printf("%s", s);
+				t[j].T_func(valist);
+				s = ", ";
 				break;
 			}
 			j++;
