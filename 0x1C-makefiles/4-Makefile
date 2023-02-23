@@ -1,19 +1,46 @@
+# Compiler
 CC = gcc
-SRC = main.c holberton.c
-OBJ = $(SRC:.c=.o)
-NAME = holberton
-RM = rm -f
+
+# Compiler flags
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-all : $(OBJ)
+# Source files
+SRC = main.c school.c
+
+# Object files
+OBJ = $(SRC:.c=.o)
+
+# Executable name
+NAME = school
+
+# Program to delete files
+RM = rm -f
+
+# Default rule
+all: $(NAME)
+
+# Build executable
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-clean :
+# Compile source files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Delete Emacs and Vim temporary files
+clean:
 	$(RM) *~ $(NAME)
 
-oclean :
+# Delete object files
+oclean:
 	$(RM) $(OBJ)
 
-fclean : clean oclean
+# Delete Emacs and Vim temporary files, object files, and the executable
+fclean: clean oclean
+	$(RM) $(NAME)
 
-re : oclean all
+# Force recompilation of all source files
+re: fclean all
+
+# Prevent make from removing intermediate object files
+.PRECIOUS: $(OBJ)
