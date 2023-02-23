@@ -1,42 +1,20 @@
-# Compiler
 CC = gcc
-
-# Compiler flags
+SRC = main.c
+OBJ = $(SRC:%.c=%.o)
+NAME = holberton
+RM = rm -f
 CFLAGS = -Wall -Werror -Wextra -pedantic
+.PHONY: all clean oclean fclean re
 
-# Source files
-SRC = main.c file1.c file2.c
-
-# Object files
-OBJ = $(SRC:.c=.o)
-
-# Executable name
-NAME = school
-
-# Delete command
-RM = /bin/rm -f
-
-# Rules
-.PHONY: all clean fclean oclean re
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+all: m.h $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	$(RM) $(OBJ) *~ $(NAME)
+	$(RM) *~ $(NAME)
 
 oclean:
 	$(RM) $(OBJ)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean: clean oclean
 
-re: fclean all
-
-# Prevent issues with files named "clean", "oclean", "fclean", and "re"
-.PHONY: clean oclean fclean re
+re: fclean all 
